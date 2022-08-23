@@ -8,6 +8,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemocracyBot.Integration.We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemocracyBot.Integration.Telegram", "DemocracyBot.Integration.Telegram\DemocracyBot.Integration.Telegram.csproj", "{7D8DDCC6-D0D8-496D-A53A-D1D2E51387B0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{B9DA1362-FE33-40FA-92B6-9AA177E3D71C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemocracyBot.Domain.Notification", "DemocracyBot.Domain.Notification\DemocracyBot.Domain.Notification.csproj", "{F46E49B3-4242-47AF-B4D4-B83795A5B0E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{DB622608-60D7-4B1A-B89D-FF8762DAD01E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemocracyBot.DataAccess", "DemocracyBot.DataAccess\DemocracyBot.DataAccess.csproj", "{84259BAD-6968-4254-AD06-7FDD652324C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemocracyBot.Domain.Commands", "DemocracyBot.Domain.Commands\DemocracyBot.Domain.Commands.csproj", "{8F57B854-3A94-43A5-ADDB-F13915C7AD6C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,9 +36,24 @@ Global
 		{7D8DDCC6-D0D8-496D-A53A-D1D2E51387B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D8DDCC6-D0D8-496D-A53A-D1D2E51387B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D8DDCC6-D0D8-496D-A53A-D1D2E51387B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F46E49B3-4242-47AF-B4D4-B83795A5B0E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F46E49B3-4242-47AF-B4D4-B83795A5B0E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F46E49B3-4242-47AF-B4D4-B83795A5B0E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F46E49B3-4242-47AF-B4D4-B83795A5B0E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84259BAD-6968-4254-AD06-7FDD652324C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84259BAD-6968-4254-AD06-7FDD652324C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84259BAD-6968-4254-AD06-7FDD652324C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84259BAD-6968-4254-AD06-7FDD652324C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F57B854-3A94-43A5-ADDB-F13915C7AD6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F57B854-3A94-43A5-ADDB-F13915C7AD6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F57B854-3A94-43A5-ADDB-F13915C7AD6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F57B854-3A94-43A5-ADDB-F13915C7AD6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B5657493-9CB6-45C7-AB66-DD9D645EC806} = {39AC915F-60A1-48DA-BD1F-D6951AC928E9}
 		{7D8DDCC6-D0D8-496D-A53A-D1D2E51387B0} = {39AC915F-60A1-48DA-BD1F-D6951AC928E9}
+		{F46E49B3-4242-47AF-B4D4-B83795A5B0E8} = {B9DA1362-FE33-40FA-92B6-9AA177E3D71C}
+		{84259BAD-6968-4254-AD06-7FDD652324C1} = {DB622608-60D7-4B1A-B89D-FF8762DAD01E}
+		{8F57B854-3A94-43A5-ADDB-F13915C7AD6C} = {B9DA1362-FE33-40FA-92B6-9AA177E3D71C}
 	EndGlobalSection
 EndGlobal

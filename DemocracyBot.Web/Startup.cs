@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DemocracyBot.DataAccess;
+using DemocracyBot.Domain.Commands;
 using DemocracyBot.Integration.Telegram;
 using DemocracyBot.Integration.Weather;
 using DemocracyBot.Integration.Weather.Dto;
@@ -41,9 +43,10 @@ namespace DemocracyBot.Web
             services.Configure<WeatherApiSettings>(Configuration.GetSection("WeatherApiSettings"));
             services.Configure<TelegramBotSettings>(Configuration.GetSection("TelegramBotSettings"));
 
-
             services.AddWeatherIntegration()
-                .AddTelegramIntegration();
+                .AddTelegramIntegration()
+                .AddDataAccess(Configuration)
+                .AddCommands();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

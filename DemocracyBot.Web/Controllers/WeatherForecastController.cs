@@ -24,8 +24,6 @@ namespace DemocracyBot.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            _logger.LogError("aaaa");
-
             return Ok(await _weatherService.GetWeather());
         }
     }
