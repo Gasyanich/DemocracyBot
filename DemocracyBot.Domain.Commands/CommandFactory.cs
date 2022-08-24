@@ -21,30 +21,30 @@ namespace DemocracyBot.Domain.Commands
             var messageText = message.Text;
 
             ICommand command = null;
-            
+
             if (messageText == null || !messageText.StartsWith('/'))
                 return command;
 
-            var commandText = messageText[1..];
+            var commandText = messageText[1..].Split(' ')[0];
 
-            var commandType = CommandTextToCommandType[commandText];
+            if (CommandTextToCommandType.TryGetValue(commandText, out var commandType))
+            {
+                var scope = _serviceProvider.CreateScope();
 
-            if (commandType == null)
-                return command;
+                var commandBase = (CommandBase) scope.ServiceProvider.GetRequiredService(commandType);
+                commandBase.Init(message);
 
-            var scope = _serviceProvider.CreateScope();
-
-            var commandBase = (CommandBase) scope.ServiceProvider.GetRequiredService(commandType);
-            commandBase.Init(message);
-
-            command = commandBase;
+                command = commandBase;
+            }
 
             return command;
         }
 
         private static readonly Dictionary<string, Type> CommandTextToCommandType = new Dictionary<string, Type>
         {
-            {"start", typeof(StartCommand)}
+            {"start", typeof(StartCommand)},
+            {"stop", typeof(StopCommand)},
+            {"meet", typeof(MeetCommand)},
         };
     }
 }
