@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using DemocracyBot.DataAccess.Entities;
 using DemocracyBot.DataAccess.Repository.Abstractions;
@@ -42,6 +43,19 @@ namespace DemocracyBot.DataAccess.Repository
         public async Task<IEnumerable<Chat>> GetChats()
         {
             return await _context.Chats.ToListAsync();
+        }
+
+        public async Task<IEnumerable<Chat>> GetActiveChats()
+        {
+            return await _context.Chats.Where(c => c.IsNotificationsActivated).ToListAsync();
+        }
+
+        public async Task DeleteChats()
+        {
+            var chats = await _context.Chats.ToListAsync();
+            _context.Chats.RemoveRange(chats);
+
+            await _context.SaveChangesAsync();
         }
     }
 }

@@ -13,5 +13,9 @@ namespace DemocracyBot.DataAccess.Repository.Abstractions
         Task<Chat> GetByChatId(long chatId);
 
         Task<IEnumerable<Chat>> GetChats();
+
+        Task<IEnumerable<Chat>> GetActiveChats();
+
+        Task DeleteChats();
     }
 }

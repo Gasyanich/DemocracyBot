@@ -1,21 +1,19 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using DemocracyBot.DataAccess;
 using DemocracyBot.Domain.Commands;
+using DemocracyBot.Domain.Notification;
+using DemocracyBot.Domain.Notification.Abstractions;
 using DemocracyBot.Integration.Telegram;
 using DemocracyBot.Integration.Weather;
 using DemocracyBot.Integration.Weather.Dto;
+using DemocracyBot.Web.Hangfire;
 using FluentValidation.AspNetCore;
+using Hangfire;
+using Hangfire.MemoryStorage;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
 
 namespace DemocracyBot.Web
@@ -40,13 +38,18 @@ namespace DemocracyBot.Web
                 })
                 .AddFluentValidation();
 
+            services
+                .AddHangfire(configuration => configuration.UseMemoryStorage())
+                .AddHangfireServer();
+
             services.Configure<WeatherApiSettings>(Configuration.GetSection("WeatherApiSettings"));
             services.Configure<TelegramBotSettings>(Configuration.GetSection("TelegramBotSettings"));
 
             services.AddWeatherIntegration()
                 .AddTelegramIntegration()
                 .AddDataAccess(Configuration)
-                .AddCommands();
+                .AddCommands()
+                .AddNotifications();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,7 +58,11 @@ namespace DemocracyBot.Web
             app.UseDeveloperExceptionPage();
             app.UseRouting();
 
+            app.UseHangfireDashboard();
+
             app.UseEndpoints(endpoints => { endpoints.MapDefaultControllerRoute(); });
+            
+            HangfireJobRegisterHelper.RegisterJobs(Configuration);
         }
     }
 }

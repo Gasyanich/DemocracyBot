@@ -1,7 +1,9 @@
 using System;
 using System.Threading.Tasks;
+using DemocracyBot.DataAccess.Entities;
 using DemocracyBot.DataAccess.Repository.Abstractions;
 using DemocracyBot.Domain.Commands.Abstractions;
+using Hangfire;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Telegram.Bot;
@@ -20,7 +22,7 @@ namespace DemocracyBot.Web.Controllers
 
         public BotController(IChatRepository chatRepository,
             ICommandService commandService,
-            ILogger<BotController> logger, 
+            ILogger<BotController> logger,
             TelegramBotClient botClient)
         {
             _chatRepository = chatRepository;
@@ -39,8 +41,7 @@ namespace DemocracyBot.Web.Controllers
         public async Task<IActionResult> Update([FromBody] Update update)
         {
             _logger.LogInformation("Get telegram update");
-            await _botClient.SendTextMessageAsync(update.Message!.Chat.Id, update!.Message.Text ?? "pusto");
-            
+
             try
             {
                 await _commandService.Handle(update.Message);
@@ -49,7 +50,7 @@ namespace DemocracyBot.Web.Controllers
             {
                 _logger.LogError(e.Message);
                 _logger.LogError(e.StackTrace);
-            
+
                 return Ok();
             }
 
@@ -60,6 +61,14 @@ namespace DemocracyBot.Web.Controllers
         public async Task<IActionResult> GetChats()
         {
             return Ok(await _chatRepository.GetChats());
+        }
+
+        [HttpGet("delete")]
+        public async Task<IActionResult> DeleteChats()
+        {
+            await _chatRepository.DeleteChats();
+
+            return Ok();
         }
     }
 }

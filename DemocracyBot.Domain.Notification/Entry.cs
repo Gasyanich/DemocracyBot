@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using DemocracyBot.Domain.Notification.Abstractions;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DemocracyBot.Domain.Notification
 {
@@ -6,6 +7,9 @@ namespace DemocracyBot.Domain.Notification
     {
         public static IServiceCollection AddNotifications(this IServiceCollection services)
         {
+            services.AddScoped<INotificationService, NotificationService>();
+            services.AddScoped<ITimeOfDayJobService, TimeOfDayJobService>();
+            
             return services;
         }
     }
