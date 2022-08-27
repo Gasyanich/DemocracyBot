@@ -15,6 +15,7 @@ namespace DemocracyBot.DataAccess
                 builder.UseSqlServer(configuration.GetConnectionString("Db")));
 
             services.AddScoped<IChatRepository, ChatRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             using var serviceProvider = services.BuildServiceProvider();
             using var dataContext = serviceProvider.GetRequiredService<DataContext>();
