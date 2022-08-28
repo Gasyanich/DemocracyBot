@@ -1,9 +1,26 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using DemocracyBot.DataAccess;
+using DemocracyBot.DataAccess.Repository;
+using DemocracyBot.DataAccess.Repository.Abstractions;
+using DemocracyBot.Domain.Commands;
+using DemocracyBot.Domain.Commands.Abstractions;
+using DemocracyBot.Domain.Notification;
+using DemocracyBot.Domain.Notification.Abstractions;
+using DemocracyBot.Integration.Telegram;
+using DemocracyBot.Integration.Telegram.Abstractions;
+using DemocracyBot.Integration.Telegram.Dto;
+using DemocracyBot.Integration.Weather;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Telegram.Bot;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types.Enums;
+using TL;
+using WTelegram;
 
 namespace DemocracyBot.LongPolling
 {
@@ -11,13 +28,11 @@ namespace DemocracyBot.LongPolling
     {
         static async Task Main(string[] args)
         {
-            // using var client = new WTelegram.Client(Config);
-            // var my = await client.LoginUserIfNeeded();
-            //
-            // Console.WriteLine($"We are logged-in as {my.username ?? my.first_name + " " + my.last_name} (id {my.id})");
-            
-            var botClient = new TelegramBotClient("5735722044:AAG9S5xRoA26_Jj1DLUYaeF2E6CL6tmfffg");
-            
+            var services = ConfigureServices();
+            var provider = services.BuildServiceProvider();
+
+            var botClient = provider.GetRequiredService<TelegramBotClient>();
+
             using var cts = new CancellationTokenSource();
             
             await botClient.DeleteWebhookAsync();
@@ -30,13 +45,10 @@ namespace DemocracyBot.LongPolling
             botClient.StartReceiving(
                 updateHandler: async (client, update, ct) =>
                 {
-                    var chatId = update.Message!.Chat.Id;
-                    var message = update.Message;
-
-                    var replyText = 
-                        $"[Чмо без логина](tg://user?id={886554524}) Эу сука";
+                    var scope = provider.CreateScope();
+                    var commandService = scope.ServiceProvider.GetRequiredService<ICommandService>();
                     
-                    await botClient.SendTextMessageAsync(chatId, replyText, ParseMode.MarkdownV2);
+                    await commandService.Handle(update.Message);
                 },
                 pollingErrorHandler: (client, exception, arg3) =>
                 {
@@ -54,7 +66,7 @@ namespace DemocracyBot.LongPolling
             // Send cancellation request to stop bot
             cts.Cancel();
         }
-        
+
         static string Config(string what)
         {
             switch (what)
@@ -62,12 +74,56 @@ namespace DemocracyBot.LongPolling
                 case "api_id": return "2227391";
                 case "api_hash": return "81f7429140163b499a496abdcc49db2e";
                 case "phone_number": return "+79023217238";
-                case "verification_code": Console.Write("Code: "); return Console.ReadLine();
-                case "first_name": return "Игорь";      // if sign-up is required
-                case "last_name": return "Игуменов";        // if sign-up is required
-                case "password": return "secret!";     // if user has enabled 2FA
-                default: return null;                  // let WTelegramClient decide the default config
+                case "verification_code":
+                    Console.Write("Code: ");
+                    return Console.ReadLine();
+                case "first_name": return "Игорь"; // if sign-up is required
+                case "last_name": return "Игуменов"; // if sign-up is required
+                case "password": return "secret!"; // if user has enabled 2FA
+                default: return null; // let WTelegramClient decide the default config
             }
+        }
+
+        private static IServiceCollection ConfigureServices()
+        {
+            IServiceCollection services = new ServiceCollection();
+            services.AddDbContext<DataContext>(builder =>
+                builder.UseSqlServer(
+                    "Server=217.28.223.127,17160;User Id=user_1b706;Password=Gi6=7P_rm3;Database=db_45475;"));
+
+            services.AddScoped<IChatRepository, ChatRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+
+            services.AddScoped<ICommandFactory, CommandFactory>();
+            services.AddScoped<ICommandService, CommandService>();
+
+            var commandTypes = typeof(CommandBase).Assembly
+                .GetTypes()
+                .Where(t => !t.IsAbstract && !t.IsInterface && t.IsSubclassOf(typeof(CommandBase)));
+
+            foreach (var commandType in commandTypes)
+                services.AddScoped(commandType);
+
+            services.AddScoped<INotificationService, NotificationService>();
+            services.AddScoped<ITimeOfDayJobService, TimeOfDayJobService>();
+
+            services.AddScoped(provider => new TelegramBotClient("5735722044:AAG9S5xRoA26_Jj1DLUYaeF2E6CL6tmfffg"));
+
+            services.AddSingleton<IUserTelegramService, UserTelegramService>(_ =>
+            {
+                var client = new WTelegram.Client(Config);
+                client.LoginUserIfNeeded().Wait();
+
+                return new UserTelegramService
+                {
+                    Client = client
+                };
+            });
+            services.AddScoped<IChatService, ChatService>();
+
+            services.AddHttpClient<IWeatherService, WeatherService>();
+
+            return services;
         }
     }
 }

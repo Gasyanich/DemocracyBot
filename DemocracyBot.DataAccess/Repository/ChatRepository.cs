@@ -37,12 +37,14 @@ namespace DemocracyBot.DataAccess.Repository
 
         public async Task<Chat> GetByChatId(long chatId)
         {
-            return await _context.Chats.FirstOrDefaultAsync(chat => chat.Id == chatId);
+            return await _context.Chats
+                .Include(chat => chat.Users)
+                .FirstOrDefaultAsync(chat => chat.Id == chatId);
         }
 
         public async Task<IEnumerable<Chat>> GetChats()
         {
-            return await _context.Chats.ToListAsync();
+            return await _context.Chats.Include(chat => chat.Users).ToListAsync();
         }
 
         public async Task<IEnumerable<Chat>> GetActiveChats()
@@ -52,7 +54,10 @@ namespace DemocracyBot.DataAccess.Repository
 
         public async Task DeleteChats()
         {
-            var chats = await _context.Chats.ToListAsync();
+            var chats = await _context.Chats
+                .Include(chat => chat.Users)
+                .ToListAsync();
+            
             _context.Chats.RemoveRange(chats);
 
             await _context.SaveChangesAsync();

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DemocracyBot.DataAccess.Entities
 {
@@ -7,12 +8,13 @@ namespace DemocracyBot.DataAccess.Entities
         /// <summary>
         ///     Id пользователя
         /// </summary>
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long Id { get; set; }
 
         /// <summary>
         ///     Логин в тг
         /// </summary>
-        [Required]
         public string Username { get; set; }
 
         /// <summary>

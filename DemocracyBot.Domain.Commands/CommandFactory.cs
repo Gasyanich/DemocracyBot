@@ -45,6 +45,7 @@ namespace DemocracyBot.Domain.Commands
             {"start", typeof(StartCommand)},
             {"stop", typeof(StopCommand)},
             {"meet", typeof(MeetCommand)},
+            {"all", typeof(AllCommand)}
         };
     }
 }
