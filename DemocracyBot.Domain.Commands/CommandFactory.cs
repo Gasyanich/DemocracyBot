@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using DemocracyBot.Domain.Commands.Abstractions;
 using DemocracyBot.Domain.Commands.Commands;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,23 +31,50 @@ namespace DemocracyBot.Domain.Commands
 
             if (CommandTextToCommandType.TryGetValue(commandText, out var commandType))
             {
-                var scope = _serviceProvider.CreateScope();
-
-                var commandBase = (CommandBase) scope.ServiceProvider.GetRequiredService(commandType);
-                commandBase.Init(message);
-
+                var commandBase = CreateCommand(message, commandType);
                 command = commandBase;
             }
 
             return command;
         }
 
-        private static readonly Dictionary<string, Type> CommandTextToCommandType = new Dictionary<string, Type>
+        private ICommand CreateCommand(Message message, Type commandType) 
         {
-            {"start", typeof(StartCommand)},
-            {"stop", typeof(StopCommand)},
-            {"meet", typeof(MeetCommand)},
-            {"all", typeof(AllCommand)}
-        };
+            var scope = _serviceProvider.CreateScope();
+
+            var commandBase = (CommandBase) scope.ServiceProvider.GetRequiredService(commandType);
+            commandBase.Init(message);
+
+            return commandBase;
+        }
+
+        #region Init CommandDictionary
+
+        private static Dictionary<string, Type> CommandTextToCommandType =>
+            _commandTextToCommandType ??= InitCommandTextToCommandType();
+
+        private static Dictionary<string, Type> _commandTextToCommandType;
+
+        private static Dictionary<string, Type> InitCommandTextToCommandType()
+        {
+            var commandTextToCommandType = new Dictionary<string, Type>();
+
+            var commandTypes = typeof(CommandBase).Assembly
+                .GetTypes()
+                .Where(t => !t.IsAbstract && !t.IsInterface && t.IsSubclassOf(typeof(CommandBase)));
+
+            foreach (var commandType in commandTypes)
+            {
+                var attr = commandType.GetCustomAttribute<CommandAttribute>();
+                if (attr == null)
+                    throw new Exception("Command without attribute " + commandType.Name);
+
+                commandTextToCommandType.Add(attr.CommandText, commandType);
+            }
+
+            return commandTextToCommandType;
+        }
+
+        #endregion
     }
 }

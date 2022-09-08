@@ -5,6 +5,7 @@ using Telegram.Bot;
 
 namespace DemocracyBot.Domain.Commands.Commands
 {
+    [Command("stop")]
     public class StopCommand : CommandBase
     {
         private readonly IChatRepository _chatRepository;

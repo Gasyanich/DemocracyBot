@@ -9,6 +9,7 @@ using DemocracyBot.Domain.Commands;
 using DemocracyBot.Domain.Commands.Abstractions;
 using DemocracyBot.Domain.Notification;
 using DemocracyBot.Domain.Notification.Abstractions;
+using DemocracyBot.Integration.Insult;
 using DemocracyBot.Integration.Telegram;
 using DemocracyBot.Integration.Telegram.Abstractions;
 using DemocracyBot.Integration.Telegram.Dto;
@@ -34,9 +35,9 @@ namespace DemocracyBot.LongPolling
             var botClient = provider.GetRequiredService<TelegramBotClient>();
 
             using var cts = new CancellationTokenSource();
-            
+
             await botClient.DeleteWebhookAsync();
-            
+
             // StartReceiving does not block the caller thread. Receiving is done on the ThreadPool.
             var receiverOptions = new ReceiverOptions
             {
@@ -47,7 +48,7 @@ namespace DemocracyBot.LongPolling
                 {
                     var scope = provider.CreateScope();
                     var commandService = scope.ServiceProvider.GetRequiredService<ICommandService>();
-                    
+
                     await commandService.Handle(update.Message);
                 },
                 pollingErrorHandler: (client, exception, arg3) =>
@@ -57,12 +58,12 @@ namespace DemocracyBot.LongPolling
                 receiverOptions: receiverOptions,
                 cancellationToken: cts.Token
             );
-            
+
             var me = await botClient.GetMeAsync();
-            
+
             Console.WriteLine($"Start listening for @{me.Username}");
             Console.ReadLine();
-            
+
             // Send cancellation request to stop bot
             cts.Cancel();
         }
@@ -109,6 +110,10 @@ namespace DemocracyBot.LongPolling
 
             services.AddScoped(provider => new TelegramBotClient("5735722044:AAG9S5xRoA26_Jj1DLUYaeF2E6CL6tmfffg"));
 
+            services.Configure<EvilInsultApiSettings>(settings => settings.ApiUrl = "https://evilinsult.com/");
+
+            services.AddScoped<IEvilInsultService, EvilInsultService>();
+
             services.AddSingleton<IUserTelegramService, UserTelegramService>(_ =>
             {
                 var client = new WTelegram.Client(Config);
@@ -122,6 +127,7 @@ namespace DemocracyBot.LongPolling
             services.AddScoped<IChatService, ChatService>();
 
             services.AddHttpClient<IWeatherService, WeatherService>();
+            services.AddHttpClient<IEvilInsultService, EvilInsultService>();
 
             return services;
         }

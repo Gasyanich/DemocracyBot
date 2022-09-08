@@ -3,6 +3,7 @@ using DemocracyBot.DataAccess;
 using DemocracyBot.Domain.Commands;
 using DemocracyBot.Domain.Notification;
 using DemocracyBot.Domain.Notification.Abstractions;
+using DemocracyBot.Integration.Insult;
 using DemocracyBot.Integration.Telegram;
 using DemocracyBot.Integration.Weather;
 using DemocracyBot.Integration.Weather.Dto;
@@ -44,9 +45,11 @@ namespace DemocracyBot.Web
 
             services.Configure<WeatherApiSettings>(Configuration.GetSection("WeatherApiSettings"));
             services.Configure<TelegramBotSettings>(Configuration.GetSection("TelegramBotSettings"));
+            services.Configure<EvilInsultApiSettings>(Configuration.GetSection("EvilInsultApiSettings"));
 
             services.AddWeatherIntegration()
                 .AddTelegramIntegration()
+                .AddInsultIntegration()
                 .AddDataAccess(Configuration)
                 .AddCommands()
                 .AddNotifications();

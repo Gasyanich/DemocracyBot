@@ -8,6 +8,7 @@ using Telegram.Bot.Types.Enums;
 
 namespace DemocracyBot.Domain.Commands.Commands
 {
+    [Command("all")]
     public class AllCommand : CommandBase
     {
         private readonly IChatRepository _chatRepository;

@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemocracyBot.Domain.Command
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemocracyBot.LongPolling", "DemocracyBot.LongPolling\DemocracyBot.LongPolling.csproj", "{660B3DFC-D47F-4625-B50E-C35C15704966}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemocracyBot.Integration.Insult", "DemocracyBot.Integration.Insult\DemocracyBot.Integration.Insult.csproj", "{A6F1F44E-349F-4C3F-B443-FA560406A87B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +56,10 @@ Global
 		{660B3DFC-D47F-4625-B50E-C35C15704966}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{660B3DFC-D47F-4625-B50E-C35C15704966}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{660B3DFC-D47F-4625-B50E-C35C15704966}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6F1F44E-349F-4C3F-B443-FA560406A87B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6F1F44E-349F-4C3F-B443-FA560406A87B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6F1F44E-349F-4C3F-B443-FA560406A87B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6F1F44E-349F-4C3F-B443-FA560406A87B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B5657493-9CB6-45C7-AB66-DD9D645EC806} = {39AC915F-60A1-48DA-BD1F-D6951AC928E9}
@@ -61,5 +67,6 @@ Global
 		{F46E49B3-4242-47AF-B4D4-B83795A5B0E8} = {B9DA1362-FE33-40FA-92B6-9AA177E3D71C}
 		{84259BAD-6968-4254-AD06-7FDD652324C1} = {DB622608-60D7-4B1A-B89D-FF8762DAD01E}
 		{8F57B854-3A94-43A5-ADDB-F13915C7AD6C} = {B9DA1362-FE33-40FA-92B6-9AA177E3D71C}
+		{A6F1F44E-349F-4C3F-B443-FA560406A87B} = {39AC915F-60A1-48DA-BD1F-D6951AC928E9}
 	EndGlobalSection
 EndGlobal

@@ -8,6 +8,7 @@ using Telegram.Bot;
 
 namespace DemocracyBot.Domain.Commands.Commands
 {
+    [Command("start")]
     public class StartCommand : CommandBase
     {
         private readonly IChatRepository _chatRepository;
@@ -32,15 +33,15 @@ namespace DemocracyBot.Domain.Commands.Commands
             var botUsers = chatUsers
                 .Where(chatUser => chatUser.UserId != Client.BotId)
                 .Select(chatUser => new BotUser
-            {
-                Id = chatUser.UserId,
-                ChatId = ChatId,
-                Status = UserStatus.Common,
-                Username = chatUser.UserName,
-                ReputationScore = 0,
-                AvailableReputationScore = 15,
-                ReputationVoteErrorCount = 0
-            }).ToList();
+                {
+                    Id = chatUser.UserId,
+                    ChatId = ChatId,
+                    Status = UserStatus.Common,
+                    Username = chatUser.UserName,
+                    ReputationScore = 0,
+                    AvailableReputationScore = 15,
+                    ReputationVoteErrorCount = 0
+                }).ToList();
 
             await _chatRepository.AddChat(new Chat
             {

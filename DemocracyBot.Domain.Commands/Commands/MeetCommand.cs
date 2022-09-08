@@ -4,6 +4,7 @@ using Telegram.Bot;
 
 namespace DemocracyBot.Domain.Commands.Commands
 {
+    [Command("meet")]
     public class MeetCommand : CommandBase
     {
         public MeetCommand(TelegramBotClient client) : base(client)
@@ -12,7 +13,6 @@ namespace DemocracyBot.Domain.Commands.Commands
 
         public async override Task Execute()
         {
-            
         }
     }
 }
