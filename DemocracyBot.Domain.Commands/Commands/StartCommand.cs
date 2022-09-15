@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using DemocracyBot.DataAccess.Entities;
 using DemocracyBot.DataAccess.Repository.Abstractions;
 using DemocracyBot.Domain.Commands.Abstractions;
+using DemocracyBot.Domain.Commands.Commands.Common;
 using DemocracyBot.Integration.Telegram.Abstractions;
 using Telegram.Bot;
 

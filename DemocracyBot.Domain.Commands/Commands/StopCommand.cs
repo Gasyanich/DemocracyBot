@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using DemocracyBot.DataAccess.Repository.Abstractions;
 using DemocracyBot.Domain.Commands.Abstractions;
+using DemocracyBot.Domain.Commands.Commands.Common;
 using Telegram.Bot;
 
 namespace DemocracyBot.Domain.Commands.Commands

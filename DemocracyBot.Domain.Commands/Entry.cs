@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using DemocracyBot.Domain.Commands.Abstractions;
+using DemocracyBot.Domain.Commands.Abstractions.Interactive;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DemocracyBot.Domain.Commands
@@ -10,6 +11,7 @@ namespace DemocracyBot.Domain.Commands
         {
             services.AddScoped<ICommandFactory, CommandFactory>();
             services.AddScoped<ICommandService, CommandService>();
+            services.AddSingleton<IStateManager, StateManager>();
 
             var commandTypes = typeof(CommandBase).Assembly
                 .GetTypes()
