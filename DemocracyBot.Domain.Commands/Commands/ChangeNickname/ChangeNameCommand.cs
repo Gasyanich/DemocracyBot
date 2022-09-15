@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using DemocracyBot.Domain.Commands.Abstractions;
 using DemocracyBot.Domain.Commands.Abstractions.Interactive;
-using DemocracyBot.Domain.Commands.Commands.Common;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
@@ -20,14 +20,14 @@ namespace DemocracyBot.Domain.Commands.Commands.ChangeNickname
         {
             await Reply("Как нам тебя теперь называть?", AskNewNicknameMarkup);
 
-            return ChangeNameStep.SelectNickname;
+            return ChangeNameStep.AskNewName;
         }
 
         protected override async Task<ChangeNameStep> HandleStep(ChangeNameStep step)
         {
-            if (step == ChangeNameStep.SelectNickname)
+            if (step == ChangeNameStep.AskNewName)
             {
-                const ChangeNameStep onErrorStep = ChangeNameStep.SelectNickname;
+                const ChangeNameStep onErrorStep = ChangeNameStep.AskNewName;
 
                 var newNickName = Message.Text?.Trim();
 

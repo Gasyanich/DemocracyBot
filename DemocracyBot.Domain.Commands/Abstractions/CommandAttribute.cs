@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DemocracyBot.Domain.Commands.Commands.Common
+namespace DemocracyBot.Domain.Commands.Abstractions
 {
     [AttributeUsage(AttributeTargets.Class)]
     public class CommandAttribute : Attribute

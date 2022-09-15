@@ -2,6 +2,6 @@
 {
     public enum ChangeNameStep
     {
-        SelectNickname = 1
+        AskNewName = 1
     }
 }

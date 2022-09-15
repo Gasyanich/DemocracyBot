@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using DemocracyBot.Domain.Commands.Abstractions;
 using DemocracyBot.Domain.Commands.Abstractions.Interactive;
-using DemocracyBot.Domain.Commands.Commands.Common;
 using Microsoft.Extensions.DependencyInjection;
 using Telegram.Bot.Types;
 
