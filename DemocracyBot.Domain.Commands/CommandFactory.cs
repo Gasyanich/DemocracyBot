@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using DemocracyBot.Domain.Commands.Abstractions;
 using DemocracyBot.Domain.Commands.Abstractions.Interactive;
+using DemocracyBot.Domain.Commands.Commands;
 using Microsoft.Extensions.DependencyInjection;
 using Telegram.Bot.Types;
 
@@ -26,7 +27,7 @@ namespace DemocracyBot.Domain.Commands
                 return null;
             
             var messageText = message.Text;
-            
+
             if (string.IsNullOrWhiteSpace(messageText))
                 return null;
             
@@ -64,7 +65,10 @@ namespace DemocracyBot.Domain.Commands
 
             var replyToMessageId = message.ReplyToMessage?.MessageId;
             if (replyToMessageId == null || replyToMessageId != state.ReplyMessageId)
+            {
+                _stateManager.RemoveState(message.From.Id);
                 return false;
+            }
             
             command = CreateCommand(message, state.CommandType);
             return true;

@@ -24,6 +24,15 @@ namespace DemocracyBot.Domain.Commands.Abstractions
 
         #region Utils
 
+        protected static IReplyMarkup GetForceReplyMarkup(string text)
+        {
+            return new ForceReplyMarkup
+            {
+                Selective = true,
+                InputFieldPlaceholder = text
+            };
+        }
+        
         protected async Task SendTextMessage(string text)
         {
             await Client.SendTextMessageAsync(ChatId, text);

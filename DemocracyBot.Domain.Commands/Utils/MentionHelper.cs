@@ -9,7 +9,6 @@ namespace DemocracyBot.Domain.Commands.Utils
             return user.Username != null
                 ? $"<a href=\"tg://user?id={user.Id}\">{user.Username}</a>"
                 : $"<a href=\"tg://user?id={user.Id}\">Чмо без логина</a>";
-            //? $"[{@user.Username}](tg://user?id={user.Id})"
         }
     }
 }

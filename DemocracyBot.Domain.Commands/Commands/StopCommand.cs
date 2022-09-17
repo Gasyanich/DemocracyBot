@@ -2,6 +2,7 @@
 using DemocracyBot.DataAccess.Repository.Abstractions;
 using DemocracyBot.Domain.Commands.Abstractions;
 using Telegram.Bot;
+using Telegram.Bot.Types;
 
 namespace DemocracyBot.Domain.Commands.Commands
 {
@@ -17,11 +18,7 @@ namespace DemocracyBot.Domain.Commands.Commands
 
         public override async Task Execute()
         {
-            var chat = await _chatRepository.GetByChatId(ChatId);
-
-            chat.IsNotificationsActivated = false;
-
-            await _chatRepository.UpdateChat(chat);
+            
         }
     }
 }
