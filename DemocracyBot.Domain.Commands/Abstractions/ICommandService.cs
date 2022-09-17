@@ -5,6 +5,6 @@ namespace DemocracyBot.Domain.Commands.Abstractions
 {
     public interface ICommandService
     {
-        Task Handle(Message message);
+        Task Handle(Update message);
     }
 }

@@ -44,7 +44,7 @@ namespace DemocracyBot.Web.Controllers
 
             try
             {
-                await _commandService.Handle(update.Message);
+                await _commandService.Handle(update);
             }
             catch (Exception e)
             {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using DemocracyBot.Domain.Commands.Abstractions;
 using DemocracyBot.Domain.Commands.Abstractions.Interactive;
@@ -82,11 +83,22 @@ namespace DemocracyBot.Domain.Commands.Commands.Meet
 
                 if (meetDate != null)
                 {
+                    var inlineKeyboard = new InlineKeyboardMarkup(new List<InlineKeyboardButton>
+                    {
+                        InlineKeyboardButton.WithCallbackData("Я в деле", "/join_meet"),
+                        InlineKeyboardButton.WithCallbackData("Я пас", "/miss_meet"),
+                    });
+
                     State.MeetDateTime = meetDate.Value;
-                    await Reply(
-                        "Готово! Место встречи изменить нельзя)) Отправлю остальным уведомление за два часа и час до ее начала\n" +
+
+                    var meetMessage = await Reply(
+                        "Готово!\n" +
                         $"\nМесто встречи: {State.MeetPlace}" +
-                        $"\nДата и время встречи: {DayOfTheWeekHelper.GetDayOfTheWeekTextByDate(State.MeetDateTime)} {State.MeetDateTime:dd.MM, HH:mm}");
+                        $"\nДата и время встречи: {DayOfTheWeekHelper.GetDayOfTheWeekTextByDate(State.MeetDateTime)} {State.MeetDateTime:dd.MM, HH:mm}",
+                        inlineKeyboard);
+
+                    await Client.PinChatMessageAsync(ChatId, meetMessage.MessageId, disableNotification: false);
+
 
                     return default;
                 }

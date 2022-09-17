@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
@@ -7,7 +8,7 @@ namespace DemocracyBot.Domain.Commands.Abstractions
 {
     public abstract class CommandBase : ICommand
     {
-        protected Message Message;
+        protected Update Update;
         protected readonly TelegramBotClient Client;
 
         protected CommandBase(TelegramBotClient client)
@@ -15,9 +16,9 @@ namespace DemocracyBot.Domain.Commands.Abstractions
             Client = client;
         }
 
-        public void Init(Message message)
+        public void Init(Update update)
         {
-            Message = message;
+            Update = update;
         }
 
         public abstract Task Execute();
@@ -50,9 +51,11 @@ namespace DemocracyBot.Domain.Commands.Abstractions
             return message;
         }
 
-        protected long ChatId => Message.Chat.Id;
+        protected long ChatId => Message?.Chat.Id ?? Update?.CallbackQuery?.Message?.Chat.Id ?? throw new Exception("Cant get chat id");
 
         protected long UserId => Message.From!.Id;
+
+        protected Message Message => Update.Message;
 
         #endregion
     }

@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using DemocracyBot.Domain.Commands.Abstractions;
+using DemocracyBot.Domain.Commands.Commands;
 using Telegram.Bot.Types;
 
 namespace DemocracyBot.Domain.Commands
@@ -14,12 +16,20 @@ namespace DemocracyBot.Domain.Commands
         }
 
 
-        public async Task Handle(Message message)
+        public async Task Handle(Update message)
         {
-            var command = _commandFactory.CreateCommand(message);
+            try
+            {
+                var command = _commandFactory.CreateCommand(message);
 
-            if (command != null)
-                await command.Execute();
+                if (command != null)
+                    await command.Execute();
+            }
+            catch (Exception e)
+            {
+                var handleError = _commandFactory.CreateCommand(message, typeof(HandleErrorCommand));
+                await handleError.Execute();
+            }
         }
     }
 }

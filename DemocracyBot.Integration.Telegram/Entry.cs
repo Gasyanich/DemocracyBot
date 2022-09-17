@@ -25,7 +25,7 @@ namespace DemocracyBot.Integration.Telegram
             var tgSettings = serviceProvider.GetRequiredService<IOptions<TelegramBotSettings>>().Value;
             var tgClient = serviceProvider.GetRequiredService<TelegramBotClient>();
 
-            tgClient.SetWebhookAsync(tgSettings.WebhookUrl, allowedUpdates: new[] {UpdateType.Message}).Wait();
+            tgClient.SetWebhookAsync(tgSettings.WebhookUrl, allowedUpdates: new[] {UpdateType.Message, UpdateType.CallbackQuery}).Wait();
 
             return services;
         }

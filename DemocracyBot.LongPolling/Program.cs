@@ -50,7 +50,7 @@ namespace DemocracyBot.LongPolling
                     var scope = provider.CreateScope();
                     var commandService = scope.ServiceProvider.GetRequiredService<ICommandService>();
 
-                    await commandService.Handle(update.Message);
+                    await commandService.Handle(update);
                 },
                 pollingErrorHandler: (client, exception, arg3) =>
                 {

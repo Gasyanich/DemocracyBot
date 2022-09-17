@@ -7,6 +7,7 @@ using DemocracyBot.Domain.Commands.Abstractions.Interactive;
 using DemocracyBot.Domain.Commands.Commands;
 using Microsoft.Extensions.DependencyInjection;
 using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
 
 namespace DemocracyBot.Domain.Commands
 {
@@ -21,31 +22,43 @@ namespace DemocracyBot.Domain.Commands
             _stateManager = stateManager;
         }
 
-        public ICommand CreateCommand(Message message)
+        public ICommand CreateCommand(Update update)
         {
+            if (update.Type == UpdateType.CallbackQuery)
+            {
+                var commandTextQueryData = update.CallbackQuery!.Data;
+                if (commandTextQueryData != null)
+                {
+                    if (CommandTextToCommandType.TryGetValue(commandTextQueryData[1..], out var callbackCommandType))
+                        return CreateCommand(update, callbackCommandType);
+                }
+            }
+
+            var message = update.Message;
+
             if (message == null)
                 return null;
-            
-            var messageText = message.Text;
+
+            var messageText = message.Text?.Replace("@DemocracyDogBot", "");
 
             if (string.IsNullOrWhiteSpace(messageText))
                 return null;
-            
-            if (TryCreateInteractiveCommand(message, out var command))
+
+            if (TryCreateInteractiveCommand(update, out var command))
                 return command;
-            
+
             var commandText = messageText[1..].Split(' ')[0];
-            
+
             if (messageText.StartsWith('/') && CommandTextToCommandType.TryGetValue(commandText, out var commandType))
             {
-                var commandBase = CreateCommand(message, commandType);
+                var commandBase = CreateCommand(update, commandType);
                 command = commandBase;
             }
-            
+
             return command;
         }
 
-        private ICommand CreateCommand(Message message, Type commandType) 
+        public ICommand CreateCommand(Update message, Type commandType)
         {
             var scope = _serviceProvider.CreateScope();
 
@@ -55,8 +68,9 @@ namespace DemocracyBot.Domain.Commands
             return commandBase;
         }
 
-        private bool TryCreateInteractiveCommand(Message message, out ICommand command)
+        private bool TryCreateInteractiveCommand(Update update, out ICommand command)
         {
+            var message = update.Message!;
             command = null;
 
             var state = _stateManager.GetState<InteractiveStateBase>(message.From!.Id);
@@ -69,10 +83,9 @@ namespace DemocracyBot.Domain.Commands
                 _stateManager.RemoveState(message.From.Id);
                 return false;
             }
-            
-            command = CreateCommand(message, state.CommandType);
-            return true;
 
+            command = CreateCommand(update, state.CommandType);
+            return true;
         }
 
         #region Init CommandDictionary
