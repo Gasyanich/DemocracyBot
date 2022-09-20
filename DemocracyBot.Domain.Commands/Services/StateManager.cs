@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using DemocracyBot.Domain.Commands.Abstractions.Interactive;
 
-namespace DemocracyBot.Domain.Commands
+namespace DemocracyBot.Domain.Commands.Services
 {
     public class StateManager : IStateManager
     {

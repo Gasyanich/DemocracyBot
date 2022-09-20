@@ -1,6 +1,9 @@
 ﻿using System.Linq;
 using DemocracyBot.Domain.Commands.Abstractions;
+using DemocracyBot.Domain.Commands.Abstractions.CommandsBase;
 using DemocracyBot.Domain.Commands.Abstractions.Interactive;
+using DemocracyBot.Domain.Commands.Services;
+using DemocracyBot.Domain.Commands.Services.CommandFactory;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DemocracyBot.Domain.Commands
@@ -9,7 +12,7 @@ namespace DemocracyBot.Domain.Commands
     {
         public static IServiceCollection AddCommands(this IServiceCollection services)
         {
-            services.AddScoped<ICommandFactory, CommandFactory>();
+            services.AddScoped<ICommandFactoryService, CommandFactoryService>();
             services.AddScoped<ICommandService, CommandService>();
             services.AddSingleton<IStateManager, StateManager>();
 

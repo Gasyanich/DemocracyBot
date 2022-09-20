@@ -3,10 +3,9 @@ using Telegram.Bot.Types;
 
 namespace DemocracyBot.Domain.Commands.Abstractions
 {
-    public interface ICommandFactory
+    public interface ICommandFactoryService
     {
         ICommand CreateCommand(Update update);
-
-        ICommand CreateCommand(Update update, Type commandType);
+        
     }
 }

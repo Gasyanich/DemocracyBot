@@ -7,7 +7,10 @@ using DemocracyBot.DataAccess.Repository;
 using DemocracyBot.DataAccess.Repository.Abstractions;
 using DemocracyBot.Domain.Commands;
 using DemocracyBot.Domain.Commands.Abstractions;
+using DemocracyBot.Domain.Commands.Abstractions.CommandsBase;
 using DemocracyBot.Domain.Commands.Abstractions.Interactive;
+using DemocracyBot.Domain.Commands.Services;
+using DemocracyBot.Domain.Commands.Services.CommandFactory;
 using DemocracyBot.Domain.Notification;
 using DemocracyBot.Domain.Notification.Abstractions;
 using DemocracyBot.Integration.Insult;
@@ -96,7 +99,7 @@ namespace DemocracyBot.LongPolling
             services.AddScoped<IChatRepository, ChatRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
 
-            services.AddScoped<ICommandFactory, CommandFactory>();
+            services.AddScoped<ICommandFactoryService, CommandFactoryService>();
             services.AddScoped<ICommandService, CommandService>();
             services.AddSingleton<IStateManager, StateManager>();
 

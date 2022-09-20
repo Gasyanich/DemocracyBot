@@ -1,10 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 
-namespace DemocracyBot.Domain.Commands.Abstractions
+namespace DemocracyBot.Domain.Commands.Abstractions.CommandsBase
 {
     public abstract class CommandBase : ICommand
     {
@@ -33,7 +32,7 @@ namespace DemocracyBot.Domain.Commands.Abstractions
                 InputFieldPlaceholder = text
             };
         }
-        
+
         protected async Task SendTextMessage(string text)
         {
             await Client.SendTextMessageAsync(ChatId, text);
@@ -51,11 +50,12 @@ namespace DemocracyBot.Domain.Commands.Abstractions
             return message;
         }
 
-        protected long ChatId => Message?.Chat.Id ?? Update?.CallbackQuery?.Message?.Chat.Id ?? throw new Exception("Cant get chat id");
+        protected abstract long ChatId { get; }
 
-        protected long UserId => Message.From!.Id;
+        protected abstract long UserId { get; }
 
         protected Message Message => Update.Message;
+        protected CallbackQuery CallbackQuery => Update.CallbackQuery;
 
         #endregion
     }

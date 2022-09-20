@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using DemocracyBot.DataAccess.Repository.Abstractions;
 using DemocracyBot.Domain.Commands.Abstractions;
+using DemocracyBot.Domain.Commands.Abstractions.CommandsBase;
 using DemocracyBot.Domain.Commands.Utils;
 using Telegram.Bot;
 using Telegram.Bot.Types.Enums;
@@ -8,7 +9,7 @@ using Telegram.Bot.Types.Enums;
 namespace DemocracyBot.Domain.Commands.Commands
 {
     [Command("join_meet")]
-    public class JoinMeetCommand : CommandBase
+    public class JoinMeetCommand : CallbackQueryCommandBase
     {
         public JoinMeetCommand(TelegramBotClient client) : base(client)
         {
@@ -16,9 +17,9 @@ namespace DemocracyBot.Domain.Commands.Commands
 
         public override async Task Execute()
         {
-            var userName = Update.CallbackQuery!.From.Username ?? Update.CallbackQuery.From.FirstName;
+            var userName = CallbackQuery!.From.Username ?? CallbackQuery.From.FirstName;
 
-            var message = $"{MentionHelper.GetMentionByUser(Update.CallbackQuery.From.Id, userName)} присоединяется к тусовке! Красавчик";
+            var message = $"{MentionHelper.GetMentionByUser(UserId, userName)} присоединяется к тусовке! Красавчик";
 
             await Client.SendTextMessageAsync(ChatId, message, ParseMode.Html);
         }

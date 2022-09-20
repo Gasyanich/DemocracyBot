@@ -3,13 +3,14 @@ using System.Threading.Tasks;
 using DemocracyBot.DataAccess.Entities;
 using DemocracyBot.DataAccess.Repository.Abstractions;
 using DemocracyBot.Domain.Commands.Abstractions;
+using DemocracyBot.Domain.Commands.Abstractions.CommandsBase;
 using DemocracyBot.Integration.Telegram.Abstractions;
 using Telegram.Bot;
 
 namespace DemocracyBot.Domain.Commands.Commands
 {
     [Command("start")]
-    public class StartCommand : CommandBase
+    public class StartCommand : MessageCommandBase
     {
         private readonly IChatRepository _chatRepository;
         private readonly IChatService _chatService;

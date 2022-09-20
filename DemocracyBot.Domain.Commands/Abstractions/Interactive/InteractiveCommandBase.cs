@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
+using DemocracyBot.Domain.Commands.Abstractions.CommandsBase;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 
 namespace DemocracyBot.Domain.Commands.Abstractions.Interactive
 {
-    public abstract class InteractiveCommandBase<TState, TStep> : CommandBase
+    public abstract class InteractiveCommandBase<TState, TStep> : MessageCommandBase
         where TState : InteractiveStateBase<TStep>, new()
         where TStep : Enum
     {
