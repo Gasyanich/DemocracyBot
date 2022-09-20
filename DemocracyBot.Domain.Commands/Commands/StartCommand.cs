@@ -37,11 +37,7 @@ namespace DemocracyBot.Domain.Commands.Commands
                 {
                     Id = chatUser.UserId,
                     ChatId = ChatId,
-                    Status = UserStatus.Common,
                     Username = chatUser.UserName,
-                    ReputationScore = 0,
-                    AvailableReputationScore = 15,
-                    ReputationVoteErrorCount = 0
                 }).ToList();
 
             await _chatRepository.AddChat(new Chat

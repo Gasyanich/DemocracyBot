@@ -5,7 +5,7 @@ namespace DemocracyBot.DataAccess.Repository
 {
     public interface IUserRepository
     {
-        Task<BotUser> GetUser(long chatId, string userName);
+        Task<BotUser> GetUser(long chatId, long userId);
 
         Task<BotUser> CreateUser(BotUser user);
 

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DemocracyBot.DataAccess.Entities
@@ -6,7 +7,7 @@ namespace DemocracyBot.DataAccess.Entities
     public class BotUser
     {
         /// <summary>
-        ///     Id пользователя
+        ///     Id пользователя в тг
         /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -18,24 +19,9 @@ namespace DemocracyBot.DataAccess.Entities
         public string Username { get; set; }
 
         /// <summary>
-        ///     Текущая репутация
+        /// День рождения
         /// </summary>
-        public int ReputationScore { get; set; }
-
-        /// <summary>
-        ///     Кол-во очков репутации для голосования
-        /// </summary>
-        public int AvailableReputationScore { get; set; }
-
-        /// <summary>
-        ///     Статус (пока герой/не герой)
-        /// </summary>
-        public UserStatus Status { get; set; }
-
-        /// <summary>
-        /// Сколько раз пытался наебать правосудие голосованием с 0 очков или увеличить/уменьшить реп на недостающее число очков
-        /// </summary>
-        public int ReputationVoteErrorCount { get; set; }
+        public DateTime BirthDate { get; set; }
 
         public long ChatId { get; set; }
         public Chat Chat { get; set; }

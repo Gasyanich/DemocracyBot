@@ -13,8 +13,8 @@ namespace DemocracyBot.DataAccess.Repository
             _dataContext = dataContext;
         }
 
-        public async Task<BotUser> GetUser(long chatId, string userName)
-            => await _dataContext.Users.FirstOrDefaultAsync(user => user.Username == userName && user.ChatId == chatId);
+        public async Task<BotUser> GetUser(long chatId, long userId)
+            => await _dataContext.Users.FirstOrDefaultAsync(user => user.Id == userId && user.ChatId == chatId);
 
 
         public async Task<BotUser> CreateUser(BotUser user)

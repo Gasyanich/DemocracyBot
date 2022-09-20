@@ -1,8 +1,6 @@
-using System;
 using DemocracyBot.DataAccess;
 using DemocracyBot.Domain.Commands;
 using DemocracyBot.Domain.Notification;
-using DemocracyBot.Domain.Notification.Abstractions;
 using DemocracyBot.Integration.Insult;
 using DemocracyBot.Integration.Telegram;
 using DemocracyBot.Integration.Weather;
@@ -15,6 +13,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
 namespace DemocracyBot.Web
@@ -34,8 +33,9 @@ namespace DemocracyBot.Web
             services.AddControllers()
                 .AddNewtonsoftJson(options =>
                 {
-                    options.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
+                    options.SerializerSettings.Formatting = Formatting.Indented;
                     options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 })
                 .AddFluentValidation();
 
@@ -64,7 +64,7 @@ namespace DemocracyBot.Web
             app.UseHangfireDashboard();
 
             app.UseEndpoints(endpoints => { endpoints.MapDefaultControllerRoute(); });
-            
+
             HangfireJobRegisterHelper.RegisterJobs(Configuration);
         }
     }

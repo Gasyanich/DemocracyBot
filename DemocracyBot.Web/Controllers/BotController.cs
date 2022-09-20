@@ -6,7 +6,6 @@ using DemocracyBot.Domain.Commands.Abstractions;
 using Hangfire;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Telegram.Bot;
 using Telegram.Bot.Types;
 
 namespace DemocracyBot.Web.Controllers
@@ -18,17 +17,14 @@ namespace DemocracyBot.Web.Controllers
         private readonly IChatRepository _chatRepository;
         private readonly ICommandService _commandService;
         private readonly ILogger<BotController> _logger;
-        private readonly TelegramBotClient _botClient;
 
         public BotController(IChatRepository chatRepository,
             ICommandService commandService,
-            ILogger<BotController> logger,
-            TelegramBotClient botClient)
+            ILogger<BotController> logger)
         {
             _chatRepository = chatRepository;
             _commandService = commandService;
             _logger = logger;
-            _botClient = botClient;
         }
 
         [HttpGet]
