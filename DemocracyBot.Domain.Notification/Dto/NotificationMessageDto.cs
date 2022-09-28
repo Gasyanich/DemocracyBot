@@ -1,4 +1,6 @@
-﻿namespace DemocracyBot.Domain.Notification.Dto
+﻿using System.Collections.Generic;
+
+namespace DemocracyBot.Domain.Notification.Dto
 {
     public class NotificationMessageDto
     {
@@ -9,5 +11,9 @@
         public string AfterMessageStickerFileId { get; set; }
 
         public string BeforeMessageStickerFileId { get; set; }
+
+        public List<string> StickerFIleIds { get; set; } = new List<string>();
+
+        public bool IsPinMessage { get; set; }
     }
 }

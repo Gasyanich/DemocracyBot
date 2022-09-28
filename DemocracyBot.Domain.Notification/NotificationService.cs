@@ -3,6 +3,7 @@ using DemocracyBot.Domain.Notification.Abstractions;
 using DemocracyBot.Domain.Notification.Dto;
 using Telegram.Bot;
 using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
 
 namespace DemocracyBot.Domain.Notification
 {
@@ -21,7 +22,16 @@ namespace DemocracyBot.Domain.Notification
 
             await SendStickerIfNotNull(chatId, messageDto.BeforeMessageStickerFileId);
 
-            await _botClient.SendTextMessageAsync(chatId, messageDto.MessageText);
+            var message = await _botClient.SendTextMessageAsync(chatId, messageDto.MessageText, ParseMode.Html);
+
+            if (messageDto.IsPinMessage)
+                await _botClient.PinChatMessageAsync(chatId, message.MessageId, false);
+
+            foreach (var stickerFIleId in messageDto.StickerFIleIds)
+            {
+                await SendStickerIfNotNull(chatId, stickerFIleId);
+                await Task.Delay(200);
+            }
 
             await SendStickerIfNotNull(chatId, messageDto.AfterMessageStickerFileId);
         }

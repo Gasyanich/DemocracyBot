@@ -49,7 +49,9 @@ namespace DemocracyBot.DataAccess.Repository
 
         public async Task<IEnumerable<Chat>> GetActiveChats()
         {
-            return await _context.Chats.Where(c => c.IsNotificationsActivated).ToListAsync();
+            return await _context.Chats
+                .Include(chat => chat.Users)
+                .Where(c => c.IsNotificationsActivated).ToListAsync();
         }
 
         public async Task DeleteChats()

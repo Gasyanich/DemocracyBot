@@ -19,6 +19,12 @@ namespace DemocracyBot.Web.Hangfire
                 Cron.Daily(dayNotificationHour),
                 TimeZoneInfo.Utc
             );
+            
+            RecurringJob.AddOrUpdate<IBirthDayNotificationService>(
+                service => service.HappyBirthDay(),
+                Cron.Daily(20),
+                TimeZoneInfo.Utc
+                );
         }
     }
 }

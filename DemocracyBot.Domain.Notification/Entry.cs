@@ -9,6 +9,7 @@ namespace DemocracyBot.Domain.Notification
         {
             services.AddScoped<INotificationService, NotificationService>();
             services.AddScoped<ITimeOfDayJobService, TimeOfDayJobService>();
+            services.AddScoped<IBirthDayNotificationService, BirthDayNotificationService>();
             
             return services;
         }
