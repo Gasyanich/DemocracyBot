@@ -8,7 +8,7 @@ using Telegram.Bot.Types.Enums;
 namespace DemocracyBot.Domain.Commands.Commands
 {
     [Command("miss_meet")]
-    public class MissMeetCommand : MessageCommandBase
+    public class MissMeetCommand : CallbackQueryCommandBase
     {
         public MissMeetCommand(TelegramBotClient client) : base(client)
         {
