@@ -9,9 +9,9 @@ namespace DemocracyBot.Domain.Commands.Services
     public class CommandService : ICommandService
     {
         private readonly ICommandFactoryService _commandFactoryService;
-        private readonly ILogger _logger;
+        private readonly ILogger<CommandService> _logger;
 
-        public CommandService(ICommandFactoryService commandFactoryService, ILogger logger)
+        public CommandService(ICommandFactoryService commandFactoryService, ILogger<CommandService> logger)
         {
             _commandFactoryService = commandFactoryService;
             _logger = logger;
