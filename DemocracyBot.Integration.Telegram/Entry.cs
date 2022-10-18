@@ -1,6 +1,4 @@
-﻿using DemocracyBot.Integration.Telegram.Abstractions;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Telegram.Bot;
 using Telegram.Bot.Types.Enums;
@@ -16,10 +14,6 @@ namespace DemocracyBot.Integration.Telegram
                 var options = provider.GetRequiredService<IOptions<TelegramBotSettings>>();
                 return new TelegramBotClient(options.Value.ApiKey);
             });
-
-            services.AddSingleton<IUserTelegramService, UserTelegramService>();
-            services.AddHostedService(provider => provider.GetService<IUserTelegramService>());
-            services.AddScoped<IChatService, ChatService>();
 
             using var serviceProvider = services.BuildServiceProvider();
             var tgSettings = serviceProvider.GetRequiredService<IOptions<TelegramBotSettings>>().Value;

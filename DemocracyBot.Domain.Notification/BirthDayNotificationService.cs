@@ -1,22 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DemocracyBot.DataAccess.Repository.Abstractions;
 using DemocracyBot.Domain.Notification.Abstractions;
-using DemocracyBot.Domain.Notification.Dto;
+using DemocracyBot.Integration.Telegram.TgMessages;
+using Telegram.Bot;
 
 namespace DemocracyBot.Domain.Notification
 {
     public class BirthDayNotificationService : IBirthDayNotificationService
     {
         private readonly IChatRepository _chatRepository;
-        private readonly INotificationService _notificationService;
+        private readonly TelegramBotClient _client;
 
-        public BirthDayNotificationService(IChatRepository chatRepository, INotificationService notificationService)
+        public BirthDayNotificationService(IChatRepository chatRepository, TelegramBotClient client)
         {
             _chatRepository = chatRepository;
-            _notificationService = notificationService;
+            _client = client;
         }
 
         public async Task HappyBirthDay()
@@ -33,18 +33,14 @@ namespace DemocracyBot.Domain.Notification
                 {
                     var age = DateTime.Now.Year - user.BirthDate.Year;
 
-                    await _notificationService.SendNotificationToChat(new NotificationMessageDto
-                    {
-                        ChatId = chat.Id,
-                        IsPinMessage = true,
-                        MessageText = GetMessage(age, user.Id),
-                        StickerFIleIds = new List<string>
-                        {
-                            "CAACAgIAAxkBAAEF4uRjKe0WmbTrO0918G-Co3eNsdws_gACahgAAm0x0UnEbL97b6acmSkE",
-                            "CAACAgIAAxkBAAEF4uZjKe1fQ35AyD9YDTO-FIm5Jf7foQAChxoAAr1NOEq9sPjp-eU-CSkE",
-                            "CAACAgIAAxkBAAEF4uhjKe2E5NhTgvCY7MWJZFnpFarR1gACIxoAAszTeUp2msgwpbUbqykE"
-                        }
-                    });
+                    var messages = TgMessageChain.Create(user.ChatId)
+                        .TextMessage(GetMessage(age, user.Id))
+                        .PinMessage()
+                        .StickerMessage("CAACAgIAAxkBAAEF4uRjKe0WmbTrO0918G-Co3eNsdws_gACahgAAm0x0UnEbL97b6acmSkE")
+                        .StickerMessage("CAACAgIAAxkBAAEF4uZjKe1fQ35AyD9YDTO-FIm5Jf7foQAChxoAAr1NOEq9sPjp-eU-CSkE")
+                        .StickerMessage("CAACAgIAAxkBAAEF4uhjKe2E5NhTgvCY7MWJZFnpFarR1gACIxoAAszTeUp2msgwpbUbqykE");
+
+                    await _client.Execute(messages);
                 }
             }
         }
@@ -54,7 +50,7 @@ namespace DemocracyBot.Domain.Notification
         {
             return $"<a href=\"tg://user?id={userId}\">Братишка</a> " +
                    $"тебе сегодня {age}, вот это нихуя себе!" +
-                   $"\nОт лица ИИ этого чатика поздравляю тебя с этим замечательным днем";
+                   "\nОт лица ИИ этого чатика поздравляю тебя с этим замечательным днем";
         }
     }
 }

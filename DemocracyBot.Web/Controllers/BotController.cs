@@ -14,24 +14,15 @@ namespace DemocracyBot.Web.Controllers
     [Route("[controller]")]
     public class BotController : ControllerBase
     {
-        private readonly IChatRepository _chatRepository;
         private readonly ICommandService _commandService;
         private readonly ILogger<BotController> _logger;
 
-        public BotController(IChatRepository chatRepository,
-            ICommandService commandService,
-            ILogger<BotController> logger)
+        public BotController(ICommandService commandService, ILogger<BotController> logger)
         {
-            _chatRepository = chatRepository;
             _commandService = commandService;
             _logger = logger;
         }
 
-        [HttpGet]
-        public IActionResult Get()
-        {
-            return Ok("Started");
-        }
 
         [HttpPost("update")]
         public async Task<IActionResult> Update([FromBody] Update update)
@@ -49,20 +40,6 @@ namespace DemocracyBot.Web.Controllers
 
                 return Ok();
             }
-
-            return Ok();
-        }
-
-        [HttpGet("chats")]
-        public async Task<IActionResult> GetChats()
-        {
-            return Ok(await _chatRepository.GetChats());
-        }
-
-        [HttpGet("delete")]
-        public async Task<IActionResult> DeleteChats()
-        {
-            await _chatRepository.DeleteChats();
 
             return Ok();
         }
