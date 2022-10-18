@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -25,5 +26,7 @@ namespace DemocracyBot.DataAccess.Entities
 
         public long ChatId { get; set; }
         public Chat Chat { get; set; }
+
+        public List<Meet> Meets { get; set; }
     }
 }
