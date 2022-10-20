@@ -9,6 +9,10 @@ namespace DemocracyBot.DataAccess
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+        }
+
         public virtual DbSet<Chat> Chats { get; set; }
 
         public virtual DbSet<BotUser> Users { get; set; }

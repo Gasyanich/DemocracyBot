@@ -16,25 +16,6 @@ namespace DemocracyBot.DataAccess.Repository
             _context = context;
         }
 
-
-        public async Task<Chat> AddChat(Chat chat)
-        {
-            _context.Chats.Add(chat);
-
-            await _context.SaveChangesAsync();
-
-            return chat;
-        }
-
-        public async Task<Chat> UpdateChat(Chat chat)
-        {
-            _context.Chats.Update(chat);
-
-            await _context.SaveChangesAsync();
-
-            return chat;
-        }
-
         public async Task<Chat> GetByChatId(long chatId)
         {
             return await _context.Chats
@@ -42,27 +23,12 @@ namespace DemocracyBot.DataAccess.Repository
                 .FirstOrDefaultAsync(chat => chat.Id == chatId);
         }
 
-        public async Task<IEnumerable<Chat>> GetChats()
-        {
-            return await _context.Chats.Include(chat => chat.Users).ToListAsync();
-        }
 
         public async Task<IEnumerable<Chat>> GetActiveChats()
         {
             return await _context.Chats
                 .Include(chat => chat.Users)
                 .Where(c => c.IsNotificationsActivated).ToListAsync();
-        }
-
-        public async Task DeleteChats()
-        {
-            var chats = await _context.Chats
-                .Include(chat => chat.Users)
-                .ToListAsync();
-            
-            _context.Chats.RemoveRange(chats);
-
-            await _context.SaveChangesAsync();
         }
     }
 }

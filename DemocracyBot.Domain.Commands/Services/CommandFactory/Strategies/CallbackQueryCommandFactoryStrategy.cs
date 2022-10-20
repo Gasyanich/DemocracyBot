@@ -14,7 +14,7 @@ namespace DemocracyBot.Domain.Commands.Services.CommandFactory.Strategies
 
         public override ICommand CreateCommand(Update update)
         {
-            var commandText = update.CallbackQuery!.Data;
+            var commandText = update.CallbackQuery!.Data?.Split(' ')[0];
             if (commandText == null) return null;
 
             return CommandFactoryHelper.Commands.TryGetValue(commandText[1..], out var commandType)

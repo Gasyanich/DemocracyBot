@@ -6,16 +6,8 @@ namespace DemocracyBot.DataAccess.Repository.Abstractions
 {
     public interface IChatRepository
     {
-        Task<Chat> AddChat(Chat chat);
-
-        Task<Chat> UpdateChat(Chat chat);
-
         Task<Chat> GetByChatId(long chatId);
 
-        Task<IEnumerable<Chat>> GetChats();
-
         Task<IEnumerable<Chat>> GetActiveChats();
-
-        Task DeleteChats();
     }
 }

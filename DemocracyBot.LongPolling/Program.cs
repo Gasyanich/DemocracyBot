@@ -12,8 +12,9 @@ using DemocracyBot.Domain.Commands.Services;
 using DemocracyBot.Domain.Commands.Services.CommandFactory;
 using DemocracyBot.Domain.Notification;
 using DemocracyBot.Domain.Notification.Abstractions;
-using DemocracyBot.Integration.Insult;
 using DemocracyBot.Integration.Weather;
+using Hangfire;
+using Hangfire.MemoryStorage;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Telegram.Bot;
@@ -73,7 +74,7 @@ namespace DemocracyBot.LongPolling
                     "Server=217.28.223.127,17160;User Id=user_1b706;Password=Gi6=7P_rm3;Database=db_45475;"));
 
             services.AddScoped<IChatRepository, ChatRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IMeetRepository, MeetRepository>();
 
             services.AddScoped<ICommandFactoryService, CommandFactoryService>();
             services.AddScoped<ICommandService, CommandService>();
@@ -85,17 +86,13 @@ namespace DemocracyBot.LongPolling
 
             foreach (var commandType in commandTypes)
                 services.AddScoped(commandType);
-            
+
             services.AddScoped<ITimeOfDayJobService, TimeOfDayJobService>();
 
             services.AddScoped(provider => new TelegramBotClient("5735722044:AAG9S5xRoA26_Jj1DLUYaeF2E6CL6tmfffg"));
 
-            services.Configure<EvilInsultApiSettings>(settings => settings.ApiUrl = "https://evilinsult.com/");
-
-            services.AddScoped<IEvilInsultService, EvilInsultService>();
-
             services.AddHttpClient<IWeatherService, WeatherService>();
-            services.AddHttpClient<IEvilInsultService, EvilInsultService>();
+            services.AddHangfire(configuration => configuration.UseMemoryStorage());
 
             return services;
         }

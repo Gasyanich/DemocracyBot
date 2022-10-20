@@ -13,5 +13,6 @@ namespace DemocracyBot.DataAccess.Entities
         public bool IsNotificationsActivated { get; set; }
 
         public List<BotUser> Users { get; set; }
+        public List<Meet> Meets { get; set; }
     }
 }

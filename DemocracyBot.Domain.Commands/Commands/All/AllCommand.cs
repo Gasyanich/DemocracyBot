@@ -4,6 +4,7 @@ using DemocracyBot.DataAccess.Repository.Abstractions;
 using DemocracyBot.Domain.Commands.Abstractions;
 using DemocracyBot.Domain.Commands.Abstractions.Interactive;
 using DemocracyBot.Domain.Commands.Utils;
+using DemocracyBot.Utils;
 using Telegram.Bot;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;
@@ -39,7 +40,7 @@ namespace DemocracyBot.Domain.Commands.Commands.All
 
             var chatWithUsers = await _chatRepository.GetByChatId(ChatId);
 
-            var mentionsText = chatWithUsers.Users.Select(MentionHelper.GetMentionByUser);
+            var mentionsText = chatWithUsers.Users.Select(u => MentionHelper.GetMentionByUser(u.Id, u.Username));
             var separatedMentions = string.Join(", ", mentionsText);
 
             var resultMessageToAll = separatedMentions + " " + messageText;

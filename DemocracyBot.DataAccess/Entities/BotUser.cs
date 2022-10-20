@@ -24,9 +24,8 @@ namespace DemocracyBot.DataAccess.Entities
         /// </summary>
         public DateTime BirthDate { get; set; }
 
-        public long ChatId { get; set; }
-        public Chat Chat { get; set; }
-
+        
+        public List<Chat> Chats { get; set; }
         public List<Meet> Meets { get; set; }
     }
 }

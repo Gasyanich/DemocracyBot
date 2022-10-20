@@ -8,8 +8,11 @@ namespace DemocracyBot.DataAccess.Entities
     {
         [Key] public long Id { get; set; }
 
-        public DateTimeOffset DateTime { get; set; }
+        public DateTimeOffset Date { get; set; }
 
+        public string Place { get; set; }
+
+        
         public long ChatId { get; set; }
         public Chat Chat { get; set; }
 

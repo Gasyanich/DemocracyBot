@@ -33,7 +33,7 @@ namespace DemocracyBot.Domain.Notification
                 {
                     var age = DateTime.Now.Year - user.BirthDate.Year;
 
-                    var messages = TgMessageChain.Create(user.ChatId)
+                    var messages = TgMessageChain.Create(chat.Id)
                         .TextMessage(GetMessage(age, user.Id))
                         .PinMessage()
                         .StickerMessage("CAACAgIAAxkBAAEF4uRjKe0WmbTrO0918G-Co3eNsdws_gACahgAAm0x0UnEbL97b6acmSkE")

@@ -19,7 +19,7 @@
       <PackageReference Include="Hangfire.MemoryStorage.Core" Version="1.4.0" />
       <PackageReference Include="HttpToSocks5Proxy" Version="1.4.0" />
       <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.2" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.2">
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.1">
       </PackageReference>
     </ItemGroup>
 

@@ -13,6 +13,13 @@
       <ProjectReference Include="..\DemocracyBot.DataAccess\DemocracyBot.DataAccess.csproj" />
       <ProjectReference Include="..\DemocracyBot.Integration.Telegram\DemocracyBot.Integration.Telegram.csproj" />
       <ProjectReference Include="..\DemocracyBot.Integration.Weather\DemocracyBot.Integration.Weather.csproj" />
+      <ProjectReference Include="..\DemocracyBot.Utils\DemocracyBot.Utils.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="DemocracyBot.Domain.Commands, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\DemocracyBot.Web\bin\Debug\net6.0\DemocracyBot.Domain.Commands.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>
