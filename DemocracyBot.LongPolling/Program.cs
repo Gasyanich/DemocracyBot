@@ -79,6 +79,7 @@ namespace DemocracyBot.LongPolling
             services.AddScoped<ICommandFactoryService, CommandFactoryService>();
             services.AddScoped<ICommandService, CommandService>();
             services.AddSingleton<IStateManager, StateManager>();
+            services.AddSingleton<IRestrictService, RestrictService>();
 
             var commandTypes = typeof(CommandBase).Assembly
                 .GetTypes()

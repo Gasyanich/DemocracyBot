@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DemocracyBot.DataAccess.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221019142503_AddMeets")]
-    partial class AddMeets
+    [Migration("20221024185556_AddPollQuestion")]
+    partial class AddPollQuestion
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -107,6 +107,72 @@ namespace DemocracyBot.DataAccess.Migrations
                     b.ToTable("Meets");
                 });
 
+            modelBuilder.Entity("DemocracyBot.DataAccess.Entities.Poll", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<long>("ChatId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Question")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Polls");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Poll");
+                });
+
+            modelBuilder.Entity("DemocracyBot.DataAccess.Entities.PollAnswer", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<byte>("Number")
+                        .HasColumnType("tinyint");
+
+                    b.Property<string>("PollId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VoteCount")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PollId");
+
+                    b.ToTable("PollAnswers");
+                });
+
+            modelBuilder.Entity("DemocracyBot.DataAccess.Entities.RestrictPoll", b =>
+                {
+                    b.HasBaseType("DemocracyBot.DataAccess.Entities.Poll");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasIndex("ChatId");
+
+                    b.HasIndex("UserId");
+
+                    b.HasDiscriminator().HasValue("RestrictPoll");
+                });
+
             modelBuilder.Entity("BotUserChat", b =>
                 {
                     b.HasOne("DemocracyBot.DataAccess.Entities.Chat", null)
@@ -148,9 +214,49 @@ namespace DemocracyBot.DataAccess.Migrations
                     b.Navigation("Chat");
                 });
 
+            modelBuilder.Entity("DemocracyBot.DataAccess.Entities.PollAnswer", b =>
+                {
+                    b.HasOne("DemocracyBot.DataAccess.Entities.Poll", "Poll")
+                        .WithMany("Answers")
+                        .HasForeignKey("PollId");
+
+                    b.Navigation("Poll");
+                });
+
+            modelBuilder.Entity("DemocracyBot.DataAccess.Entities.RestrictPoll", b =>
+                {
+                    b.HasOne("DemocracyBot.DataAccess.Entities.Chat", "Chat")
+                        .WithMany("Polls")
+                        .HasForeignKey("ChatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DemocracyBot.DataAccess.Entities.BotUser", "User")
+                        .WithMany("RestrictPolls")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Chat");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("DemocracyBot.DataAccess.Entities.BotUser", b =>
+                {
+                    b.Navigation("RestrictPolls");
+                });
+
             modelBuilder.Entity("DemocracyBot.DataAccess.Entities.Chat", b =>
                 {
                     b.Navigation("Meets");
+
+                    b.Navigation("Polls");
+                });
+
+            modelBuilder.Entity("DemocracyBot.DataAccess.Entities.Poll", b =>
+                {
+                    b.Navigation("Answers");
                 });
 #pragma warning restore 612, 618
         }

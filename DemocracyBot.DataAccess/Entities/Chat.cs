@@ -14,5 +14,6 @@ namespace DemocracyBot.DataAccess.Entities
 
         public List<BotUser> Users { get; set; }
         public List<Meet> Meets { get; set; }
+
     }
 }

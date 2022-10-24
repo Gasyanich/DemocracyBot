@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DemocracyBot.DataAccess.Entities;
@@ -29,6 +30,14 @@ namespace DemocracyBot.DataAccess.Repository
             return await _context.Chats
                 .Include(chat => chat.Users)
                 .Where(c => c.IsNotificationsActivated).ToListAsync();
+        }
+
+        public async Task<BotUser> GetChatUserByUserName(long chatId, string userName)
+        {
+            return await _context.Chats
+                .Where(chat => chat.Id == chatId)
+                .SelectMany(chat => chat.Users)
+                .FirstOrDefaultAsync(user => user.Username == userName);
         }
     }
 }

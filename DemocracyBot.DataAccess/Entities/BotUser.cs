@@ -23,7 +23,6 @@ namespace DemocracyBot.DataAccess.Entities
         /// День рождения
         /// </summary>
         public DateTime BirthDate { get; set; }
-
         
         public List<Chat> Chats { get; set; }
         public List<Meet> Meets { get; set; }

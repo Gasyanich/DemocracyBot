@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using DemocracyBot.Domain.Commands.Abstractions;
 using DemocracyBot.Domain.Commands.Abstractions.Interactive;
+using DemocracyBot.Integration.Telegram.Extensions;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
@@ -37,20 +38,15 @@ namespace DemocracyBot.Domain.Commands.Commands.ChangeNickname
                     await Reply("А ты пошел нахуй, владелец");
                     return default;
                 }
-                
+
                 if (!await ValidateNickname(newNickName))
                     return onErrorStep;
 
                 try
                 {
-                    await SetAdmin(chatMember);
-                    await Client.SetChatAdministratorCustomTitleAsync(ChatId, UserId, newNickName!);
+                    await Client.ChangeNickName(ChatId, UserId, newNickName, chatMember.Status);
 
-                    await Client.SendTextMessageAsync(
-                        ChatId,
-                        GetRandomReactionOnNewNickname(newNickName),
-                        replyToMessageId: Message.MessageId
-                    );
+                    await Reply(GetRandomReactionOnNewNickname(newNickName));
                 }
                 catch (Exception e)
                 {

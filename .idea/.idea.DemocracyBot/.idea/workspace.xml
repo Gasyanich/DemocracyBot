@@ -12,129 +12,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58ad31bf-5af6-4b1e-bb0d-5dbf60a67183" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.DataAccess/Migrations/20221019142503_AddMeets.Designer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.DataAccess/Migrations/20221019142503_AddMeets.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.DataAccess/Repository/Abstractions/IMeetRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.DataAccess/Repository/MeetRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Domain.Notification/Abstractions/IMeetNotificationService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Domain.Notification/MeetNotificationService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Utils/DemocracyBot.Utils.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Utils/MentionHelper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/DemocracyBot.DataAccess.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/DemocracyBot.DataAccess.pdb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/DemocracyBot.Domain.Commands.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/DemocracyBot.Domain.Commands.pdb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/DemocracyBot.Domain.Notification.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/DemocracyBot.Domain.Notification.pdb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/DemocracyBot.Integration.Telegram.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/DemocracyBot.Integration.Telegram.pdb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/DemocracyBot.Integration.Weather.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/DemocracyBot.Integration.Weather.pdb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/DemocracyBot.Utils.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/DemocracyBot.Utils.pdb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/DemocracyBot.Web.deps.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/DemocracyBot.Web.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/DemocracyBot.Web.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/DemocracyBot.Web.pdb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/DemocracyBot.Web.runtimeconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/FluentValidation.AspNetCore.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/FluentValidation.DependencyInjectionExtensions.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/FluentValidation.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/Hangfire.AspNetCore.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/Hangfire.Core.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/Hangfire.MemoryStorage.Core.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/Humanizer.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/Microsoft.AspNetCore.JsonPatch.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/Microsoft.Data.SqlClient.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/Microsoft.EntityFrameworkCore.Abstractions.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/Microsoft.EntityFrameworkCore.Design.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/Microsoft.EntityFrameworkCore.Relational.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/Microsoft.EntityFrameworkCore.SqlServer.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/Microsoft.EntityFrameworkCore.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/Microsoft.Extensions.Configuration.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/Microsoft.Extensions.DependencyInjection.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/Microsoft.Identity.Client.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/Microsoft.IdentityModel.JsonWebTokens.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/Microsoft.IdentityModel.Logging.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/Microsoft.IdentityModel.Protocols.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/Microsoft.IdentityModel.Tokens.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/Microsoft.Win32.SystemEvents.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/MihaZupan.HttpToSocks5Proxy.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/Newtonsoft.Json.Bson.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/Newtonsoft.Json.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/System.Configuration.ConfigurationManager.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/System.Drawing.Common.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/System.IdentityModel.Tokens.Jwt.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/System.Runtime.Caching.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/System.Security.Cryptography.ProtectedData.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/System.Security.Permissions.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/System.Windows.Extensions.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/Telegram.Bot.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/app.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/appsettings.Development.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/appsettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/ca/Hangfire.Core.resources.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/de/Hangfire.Core.resources.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/es/Hangfire.Core.resources.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/fa/Hangfire.Core.resources.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/fr/Hangfire.Core.resources.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/nb/Hangfire.Core.resources.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/nl/Hangfire.Core.resources.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/pt-BR/Hangfire.Core.resources.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/pt-PT/Hangfire.Core.resources.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/pt/Hangfire.Core.resources.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/runtimes/unix/lib/netcoreapp3.0/System.Drawing.Common.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/runtimes/unix/lib/netcoreapp3.1/Microsoft.Data.SqlClient.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/runtimes/win-arm/native/Microsoft.Data.SqlClient.SNI.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/runtimes/win-arm64/native/Microsoft.Data.SqlClient.SNI.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/runtimes/win-x64/native/Microsoft.Data.SqlClient.SNI.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/runtimes/win/lib/netcoreapp3.0/Microsoft.Win32.SystemEvents.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/runtimes/win/lib/netcoreapp3.0/System.Drawing.Common.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/runtimes/win/lib/netcoreapp3.0/System.Windows.Extensions.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/runtimes/win/lib/netcoreapp3.1/Microsoft.Data.SqlClient.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/runtimes/win/lib/netstandard2.0/System.Runtime.Caching.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/tr-TR/Hangfire.Core.resources.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/web.config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/zh-TW/Hangfire.Core.resources.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemocracyBot.Web/publish/zh/Hangfire.Core.resources.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemocracyBot.DataAccess/Migrations/20221024185556_AddPollQuestion.Designer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemocracyBot.DataAccess/Migrations/20221024185556_AddPollQuestion.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemocracyBot.DataAccess/Migrations/20221024190053_UpdatePollQuestion.Designer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemocracyBot.DataAccess/Migrations/20221024190053_UpdatePollQuestion.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemocracyBot.DataAccess/Migrations/20221024190201_UpdatePollQuestion2.Designer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemocracyBot.DataAccess/Migrations/20221024190201_UpdatePollQuestion2.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemocracyBot.Domain.Commands/Abstractions/IRestrictService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemocracyBot.Domain.Commands/Commands/Restrict/BanCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemocracyBot.Domain.Commands/Commands/Restrict/MuteCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemocracyBot.Domain.Commands/Commands/Restrict/RestrictCommandBase.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemocracyBot.Domain.Commands/Commands/Restrict/RestrictState.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemocracyBot.Domain.Commands/Commands/Restrict/RestrictStep.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemocracyBot.Domain.Commands/Commands/Restrict/RestrictType.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemocracyBot.Domain.Commands/Services/RestrictService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemocracyBot.Integration.Telegram/Extensions/BotClientExtensions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DemocracyBot/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DemocracyBot/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DemocracyBot.DataAccess/DataContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DemocracyBot.DataAccess/DataContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemocracyBot.DataAccess/DemocracyBot.DataAccess.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DemocracyBot.DataAccess/DemocracyBot.DataAccess.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DemocracyBot.DataAccess/Entities/BotUser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DemocracyBot.DataAccess/Entities/BotUser.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DemocracyBot.DataAccess/Entities/Chat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DemocracyBot.DataAccess/Entities/Chat.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemocracyBot.DataAccess/Entities/Meet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DemocracyBot.DataAccess/Entities/Meet.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemocracyBot.DataAccess/Entry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DemocracyBot.DataAccess/Entry.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemocracyBot.DataAccess/Migrations/20220823105407_InitialCreate.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemocracyBot.DataAccess/Migrations/20220823105407_InitialCreate.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemocracyBot.DataAccess/Migrations/20220827135024_AddChatUsers.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemocracyBot.DataAccess/Migrations/20220827135024_AddChatUsers.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemocracyBot.DataAccess/Migrations/20220920154846_EditChatUsers.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemocracyBot.DataAccess/Migrations/20220920154846_EditChatUsers.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemocracyBot.DataAccess/Migrations/20221019142503_AddMeets.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DemocracyBot.DataAccess/Migrations/20221024185100_InitialCreate.Designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemocracyBot.DataAccess/Migrations/20221019142503_AddMeets.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DemocracyBot.DataAccess/Migrations/20221024185100_InitialCreate.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DemocracyBot.DataAccess/Migrations/DataContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DemocracyBot.DataAccess/Migrations/DataContextModelSnapshot.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DemocracyBot.DataAccess/Repository/Abstractions/IChatRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DemocracyBot.DataAccess/Repository/Abstractions/IChatRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DemocracyBot.DataAccess/Repository/ChatRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DemocracyBot.DataAccess/Repository/ChatRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemocracyBot.DataAccess/Repository/IUserRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemocracyBot.DataAccess/Repository/UserRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemocracyBot.Domain.Commands/Commands/All/AllCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DemocracyBot.Domain.Commands/Commands/All/AllCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemocracyBot.Domain.Commands/Commands/JoinMeetCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DemocracyBot.Domain.Commands/Commands/JoinMeetCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemocracyBot.Domain.Commands/Commands/Meet/MeetCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DemocracyBot.Domain.Commands/Commands/Meet/MeetCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemocracyBot.Domain.Commands/Commands/MissMeetCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DemocracyBot.Domain.Commands/Commands/MissMeetCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemocracyBot.Domain.Commands/DemocracyBot.Domain.Commands.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DemocracyBot.Domain.Commands/DemocracyBot.Domain.Commands.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemocracyBot.Domain.Commands/Services/CommandFactory/Strategies/CallbackQueryCommandFactoryStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DemocracyBot.Domain.Commands/Services/CommandFactory/Strategies/CallbackQueryCommandFactoryStrategy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemocracyBot.Domain.Commands/Utils/MentionHelper.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemocracyBot.Domain.Notification/BirthDayNotificationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DemocracyBot.Domain.Notification/BirthDayNotificationService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemocracyBot.Domain.Notification/DemocracyBot.Domain.Notification.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DemocracyBot.Domain.Notification/DemocracyBot.Domain.Notification.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemocracyBot.Domain.Notification/Entry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DemocracyBot.Domain.Notification/Entry.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemocracyBot.LongPolling/DemocracyBot.LongPolling.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DemocracyBot.LongPolling/DemocracyBot.LongPolling.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemocracyBot.Domain.Commands/Commands/ChangeNickname/ChangeNameCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DemocracyBot.Domain.Commands/Commands/ChangeNickname/ChangeNameCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemocracyBot.Domain.Commands/Entry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DemocracyBot.Domain.Commands/Entry.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DemocracyBot.LongPolling/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DemocracyBot.LongPolling/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemocracyBot.Web/DemocracyBot.Web.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DemocracyBot.Web/DemocracyBot.Web.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemocracyBot.Web/Requests/UpdateUserBirthDateRequest.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemocracyBot.Web/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DemocracyBot.Web/Startup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemocracyBot.sln" beforeDir="false" afterPath="$PROJECT_DIR$/DemocracyBot.sln" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,18 +57,26 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7b2b87dbcf56d87de79cf698946879b1b8728d51675ee8a5c253ab4f9e4e4a/ServiceProvider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c111d8205a6749899a69b3a866bc841d183800/bf/4ea2212d/JobStorage.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1e23e5f0c74dc71df598f8ca36ce9c6996fafae33583afa23d41b2626b725/TL.Helpers.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7e15d13f2a254f4fa5f668ce45a9386b54e00/9d/a25f8fd7/UpdateType.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7e15d13f2a254f4fa5f668ce45a9386b54e00/9d/fca02ad8/ChatMemberStatus.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/76f332d275b44c66b5de1913824f8d8e91e590/01/7a7f093a/DayOfWeek.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/40bf9466f923703b726c6db619e1daeb6945bbd273fec4f950ae7d5fd9c2c5/TimeZoneInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/05fc389cefa14d06a2dbb10aae373f1f97a8/17/a66cfaf3/IServiceScope.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/470968f7061d52a388af1d51baaa152ff64781c0d50ab46f91f1f849999f/TelegramBotClientExtensions.ApiMethods.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d6b4aefcd8a1389eac53f90b24090dea8ea6b3b6c8594585fbd790a8651ebd/Update.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3d01f114455568af59359da57dd47792bc75178c3d8c14b79b7536f79efbc2d/List.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f713c7ee5f5847b75128bec9322c2f58aa6d98458ccc4d8cf0d7aa704e706f/PollAnswer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b8398ea2593d0ce96fce65af07a483b98eb96b13be3a3525fdcc975dbb865ff/Task.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ce1b1a8a4171d36556b91a95c97d033e855dca19b3563c4de1d5ec369eebb6/InputMedia.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8ffd64c5e952eff336901ce931e405283d4a62feabde76356e2e64a7982397/IResettableService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8a221793e4b13ae450dccb6e74f6985a273b27d67dca5c4bc2c2e56df33bfe7/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8e73479ff66fec7e1d65bf7166e1fafa468640c7d56c2044f96fc18dbb1b70/DateTimeOffset.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/projects/DemocracyDogBot/DemocracyBot/DemocracyBot.DataAccess/DataContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/575c31ecc35a636b6f962cb71d53992552941a18982aae1c8e6c16305cc3761b/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f32dbb6125c4ccb0a4a4d75751846e451658f838bfed7ff4f88157f4fa7f0/MethodBase.CoreCLR.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/fb09660d3dd3475ca1c75ea051ed21996a400/03/4175981b/Client.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9ff6e15065aca4366778dbe1a1b71b9164dea3534b71e1795c33fd6f159f52/RuntimeType.CoreCLR.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/projects/DemocracyDogBot/DemocracyBot/DemocracyBot.Domain.Commands/Services/CommandService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d1f68ef86315497c7b39ddb155d5cf3ace964abca69857f9943cd58479799/ServiceProvider.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -307,7 +219,12 @@
       <workItem from="1666114182992" duration="455000" />
       <workItem from="1666272247502" duration="3089000" />
       <workItem from="1666287801923" duration="5964000" />
-      <workItem from="1666294133702" duration="2365000" />
+      <workItem from="1666294133702" duration="4332000" />
+      <workItem from="1666533732176" duration="4601000" />
+      <workItem from="1666633437904" duration="1357000" />
+      <workItem from="1666634836685" duration="1968000" />
+      <workItem from="1666636845192" duration="3731000" />
+      <workItem from="1666640649233" duration="5275000" />
     </task>
     <task id="LOCAL-00001" summary="вебхуки летают">
       <created>1661245629528</created>
@@ -428,7 +345,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666112129206</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="переделал схему бд, статистика встреч ведется в бд">
+      <created>1666297916598</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1666297916598</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -469,7 +393,8 @@
     <MESSAGE value="исправил miss_meet" />
     <MESSAGE value="log" />
     <MESSAGE value="tg message chain" />
-    <option name="LAST_COMMIT_MESSAGE" value="tg message chain" />
+    <MESSAGE value="переделал схему бд, статистика встреч ведется в бд" />
+    <option name="LAST_COMMIT_MESSAGE" value="переделал схему бд, статистика встреч ведется в бд" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -531,6 +456,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/DemocracyBot.Domain.Commands/Commands/Restrict/RestrictCommandBase.cs</url>
+          <line>70</line>
+          <properties documentPath="C:\projects\DemocracyDogBot\DemocracyBot\DemocracyBot.Domain.Commands\Commands\Restrict\RestrictCommandBase.cs" initialLine="57" containingFunctionPresentation="method 'HandleStep'">
+            <startOffsets>
+              <option value="2609" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2792" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

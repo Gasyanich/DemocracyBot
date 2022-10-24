@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DemocracyBot.DataAccess.Migrations
 {
-    public partial class AddMeets : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -80,6 +80,33 @@ namespace DemocracyBot.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Polls",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ChatId = table.Column<long>(type: "bigint", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Type = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<long>(type: "bigint", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Polls", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Polls_Chats_ChatId",
+                        column: x => x.ChatId,
+                        principalTable: "Chats",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Polls_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "BotUserMeet",
                 columns: table => new
                 {
@@ -103,6 +130,27 @@ namespace DemocracyBot.DataAccess.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "PollAnswers",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Number = table.Column<byte>(type: "tinyint", nullable: false),
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VoteCount = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PollId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PollAnswers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PollAnswers_Polls_PollId",
+                        column: x => x.PollId,
+                        principalTable: "Polls",
+                        principalColumn: "Id");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_BotUserChat_UsersId",
                 table: "BotUserChat",
@@ -117,6 +165,21 @@ namespace DemocracyBot.DataAccess.Migrations
                 name: "IX_Meets_ChatId",
                 table: "Meets",
                 column: "ChatId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PollAnswers_PollId",
+                table: "PollAnswers",
+                column: "PollId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Polls_ChatId",
+                table: "Polls",
+                column: "ChatId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Polls_UserId",
+                table: "Polls",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -128,13 +191,19 @@ namespace DemocracyBot.DataAccess.Migrations
                 name: "BotUserMeet");
 
             migrationBuilder.DropTable(
+                name: "PollAnswers");
+
+            migrationBuilder.DropTable(
                 name: "Meets");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Polls");
 
             migrationBuilder.DropTable(
                 name: "Chats");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }
