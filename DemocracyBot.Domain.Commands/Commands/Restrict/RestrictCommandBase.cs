@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using DemocracyBot.DataAccess.Repository.Abstractions;
 using DemocracyBot.Domain.Commands.Abstractions;
 using DemocracyBot.Domain.Commands.Abstractions.Interactive;
+using Hangfire;
 using Telegram.Bot;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;
@@ -64,9 +65,9 @@ public abstract class RestrictCommandBase : InteractiveCommandBase<RestrictState
         }
 
         var pollAnswers = new List<string> {"Да, пускай подумает над поведением", "No."};
-        const int pollDuration = 303;
+        const int pollDurationMin = 5;
         var pollQuestion = $"Отправим @{user.Username} подумать над поведением в карцер?" +
-                           $" Время на подумать - 5мин, а то вдруг эта сука котят взрывает, минимизируем жертвы";
+                           $" Время на подумать - {pollDurationMin}мин, а то вдруг эта сука котят взрывает, минимизируем жертвы";
 
         var message = await Client.SendPollAsync(
             ChatId,
@@ -77,10 +78,11 @@ public abstract class RestrictCommandBase : InteractiveCommandBase<RestrictState
         );
 
         await Client.PinChatMessageAsync(ChatId, message.MessageId, true);
-        
-        await Task.Delay(TimeSpan.FromSeconds(pollDuration));
 
-        await _restrictService.RestrictUserByPoll(message.MessageId, ChatId, user);
+        BackgroundJob.Schedule<IRestrictService>(
+            service => service.RestrictUserByPoll(message.MessageId, ChatId, user),
+            TimeSpan.FromMinutes(pollDurationMin)
+        );
 
         return default;
     }

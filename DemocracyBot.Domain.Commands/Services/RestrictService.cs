@@ -1,11 +1,9 @@
-using System;
 using System.Threading.Tasks;
 using DemocracyBot.DataAccess.Entities;
 using DemocracyBot.Domain.Commands.Abstractions;
 using DemocracyBot.Integration.Telegram.Extensions;
 using DemocracyBot.Utils;
 using Telegram.Bot;
-using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 
 namespace DemocracyBot.Domain.Commands.Services;
@@ -23,20 +21,20 @@ public class RestrictService : IRestrictService
     {
         var poll = await _client.StopPollAsync(chatId, pollMessageId);
 
+        var mention = MentionHelper.GetMentionByUser(user.Id, user.Username);
+
         if (poll.TotalVoterCount < 2)
         {
             await _client.SendTextMessageAsync(
                 chatId,
-                $"Не набралось необхидмое количество голосов для вынесения приговора @{user.Username}. Нужно хотя бы 3"
-            );
+                $"Не набралось необхидмое количество голосов для вынесения приговора {mention}. Нужно хотя бы 3",
+                ParseMode.Html);
 
             return;
         }
 
         var yesVotesCount = poll.Options[0].VoterCount;
         var noVotesCount = poll.Options[1].VoterCount;
-
-        var mention = MentionHelper.GetMentionByUser(user.Id, user.Username);
 
         if (yesVotesCount > noVotesCount)
         {
